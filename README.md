@@ -5,10 +5,13 @@ Political Campaign Software focused on voter outreach and volunteer management.
 # Setup
 
 Run `setup.sh`.
+Update `grassroots-backend/src/grassroots-shared/local-constants.ts` with your local IP.
 
 If you use vscode, grab the [recommended](.vscode/extensions.json) extensions, for eslint and prettier.
 
 # Running in Dev Mode
+
+You'll need to access via your local IP, not localhost. This will change as part of fixing auth.
 
 There are three pieces to Grassroots. You can start everything with `npm run dev` in the root, or separately:
 
