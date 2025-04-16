@@ -10,81 +10,81 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root';
-import { Route as SharedSearchImport } from './routes/shared-search';
-import { Route as SearchImport } from './routes/search';
-import { Route as CreateContactImport } from './routes/create-contact';
-import { Route as AuthImport } from './routes/auth';
-import { Route as IndexImport } from './routes/index';
+import { Route as rootRoute } from "./routes/__root";
+import { Route as SharedSearchImport } from "./routes/shared-search";
+import { Route as SearchImport } from "./routes/search";
+import { Route as CreateContactImport } from "./routes/create-contact";
+import { Route as AuthImport } from "./routes/auth";
+import { Route as IndexImport } from "./routes/index";
 
 // Create/Update Routes
 
 const SharedSearchRoute = SharedSearchImport.update({
-  id: '/shared-search',
-  path: '/shared-search',
+  id: "/shared-search",
+  path: "/shared-search",
   getParentRoute: () => rootRoute,
 } as any);
 
 const SearchRoute = SearchImport.update({
-  id: '/search',
-  path: '/search',
+  id: "/search",
+  path: "/search",
   getParentRoute: () => rootRoute,
 } as any);
 
 const CreateContactRoute = CreateContactImport.update({
-  id: '/create-contact',
-  path: '/create-contact',
+  id: "/create-contact",
+  path: "/create-contact",
   getParentRoute: () => rootRoute,
 } as any);
 
 const AuthRoute = AuthImport.update({
-  id: '/auth',
-  path: '/auth',
+  id: "/auth",
+  path: "/auth",
   getParentRoute: () => rootRoute,
 } as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
 } as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
       preLoaderRoute: typeof IndexImport;
       parentRoute: typeof rootRoute;
     };
-    '/auth': {
-      id: '/auth';
-      path: '/auth';
-      fullPath: '/auth';
+    "/auth": {
+      id: "/auth";
+      path: "/auth";
+      fullPath: "/auth";
       preLoaderRoute: typeof AuthImport;
       parentRoute: typeof rootRoute;
     };
-    '/create-contact': {
-      id: '/create-contact';
-      path: '/create-contact';
-      fullPath: '/create-contact';
+    "/create-contact": {
+      id: "/create-contact";
+      path: "/create-contact";
+      fullPath: "/create-contact";
       preLoaderRoute: typeof CreateContactImport;
       parentRoute: typeof rootRoute;
     };
-    '/search': {
-      id: '/search';
-      path: '/search';
-      fullPath: '/search';
+    "/search": {
+      id: "/search";
+      path: "/search";
+      fullPath: "/search";
       preLoaderRoute: typeof SearchImport;
       parentRoute: typeof rootRoute;
     };
-    '/shared-search': {
-      id: '/shared-search';
-      path: '/shared-search';
-      fullPath: '/shared-search';
+    "/shared-search": {
+      id: "/shared-search";
+      path: "/shared-search";
+      fullPath: "/shared-search";
       preLoaderRoute: typeof SharedSearchImport;
       parentRoute: typeof rootRoute;
     };
@@ -94,42 +94,42 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/auth': typeof AuthRoute;
-  '/create-contact': typeof CreateContactRoute;
-  '/search': typeof SearchRoute;
-  '/shared-search': typeof SharedSearchRoute;
+  "/": typeof IndexRoute;
+  "/auth": typeof AuthRoute;
+  "/create-contact": typeof CreateContactRoute;
+  "/search": typeof SearchRoute;
+  "/shared-search": typeof SharedSearchRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/auth': typeof AuthRoute;
-  '/create-contact': typeof CreateContactRoute;
-  '/search': typeof SearchRoute;
-  '/shared-search': typeof SharedSearchRoute;
+  "/": typeof IndexRoute;
+  "/auth": typeof AuthRoute;
+  "/create-contact": typeof CreateContactRoute;
+  "/search": typeof SearchRoute;
+  "/shared-search": typeof SharedSearchRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
-  '/': typeof IndexRoute;
-  '/auth': typeof AuthRoute;
-  '/create-contact': typeof CreateContactRoute;
-  '/search': typeof SearchRoute;
-  '/shared-search': typeof SharedSearchRoute;
+  "/": typeof IndexRoute;
+  "/auth": typeof AuthRoute;
+  "/create-contact": typeof CreateContactRoute;
+  "/search": typeof SearchRoute;
+  "/shared-search": typeof SharedSearchRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/auth' | '/create-contact' | '/search' | '/shared-search';
+  fullPaths: "/" | "/auth" | "/create-contact" | "/search" | "/shared-search";
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/auth' | '/create-contact' | '/search' | '/shared-search';
+  to: "/" | "/auth" | "/create-contact" | "/search" | "/shared-search";
   id:
-    | '__root__'
-    | '/'
-    | '/auth'
-    | '/create-contact'
-    | '/search'
-    | '/shared-search';
+    | "__root__"
+    | "/"
+    | "/auth"
+    | "/create-contact"
+    | "/search"
+    | "/shared-search";
   fileRoutesById: FileRoutesById;
 }
 

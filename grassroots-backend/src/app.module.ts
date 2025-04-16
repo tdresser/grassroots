@@ -1,26 +1,26 @@
-import { Logger, Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ContactModule } from './contact/contact.module';
-import { SuperTokensModule } from 'supertokens-nestjs';
-import Session from 'supertokens-node/recipe/session';
-import EmailPassword from 'supertokens-node/recipe/emailpassword';
-import Dashboard from 'supertokens-node/recipe/dashboard';
+import { Logger, Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ContactModule } from "./contact/contact.module";
+import { SuperTokensModule } from "supertokens-nestjs";
+import Session from "supertokens-node/recipe/session";
+import EmailPassword from "supertokens-node/recipe/emailpassword";
+import Dashboard from "supertokens-node/recipe/dashboard";
 
-import { APP_GUARD } from '@nestjs/core';
-import { SuperTokensAuthGuard } from 'supertokens-nestjs';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { POSTGRES_CONFIG } from './constants';
-import { SUPERTOKENS_HOST } from './grassroots-shared/local-constants';
-import { SUPERTOKENS_APPINFO } from './grassroots-shared/supertokens-appinfo';
-import { ContactEntityOutDTO } from './grassroots-shared/contact.dto.entity';
+import { APP_GUARD } from "@nestjs/core";
+import { SuperTokensAuthGuard } from "supertokens-nestjs";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { POSTGRES_CONFIG } from "./constants";
+import { SUPERTOKENS_HOST } from "./grassroots-shared/local-constants";
+import { SUPERTOKENS_APPINFO } from "./grassroots-shared/supertokens-appinfo";
+import { ContactEntityOutDTO } from "./grassroots-shared/contact.dto.entity";
 
-const logger = new Logger('AppModule');
+const logger = new Logger("AppModule");
 @Module({
   imports: [
     ContactModule,
     SuperTokensModule.forRoot({
-      framework: 'express',
+      framework: "express",
       supertokens: {
         connectionURI: SUPERTOKENS_HOST,
       },
@@ -33,7 +33,7 @@ const logger = new Logger('AppModule');
             // eslint-disable-next-line @typescript-eslint/require-await
             onUnauthorised: async (message, request, response, userContext) => {
               logger.log(
-                'Supertokens: unauthorized: ',
+                "Supertokens: unauthorized: ",
                 JSON.stringify(message, null, 2),
               );
               void request;

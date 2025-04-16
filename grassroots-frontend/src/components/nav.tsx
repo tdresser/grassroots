@@ -1,20 +1,20 @@
-import { Link } from '@tanstack/react-router';
+import { Link } from "@tanstack/react-router";
 
-import './Nav.css';
-import { JSX } from 'react';
-import { grassrootsAPI } from '../grassrootsAPI';
+import "./Nav.css";
+import { JSX } from "react";
+import { grassrootsAPI } from "../grassrootsAPI";
 import {
   useMutation,
   UseMutationResult,
   useQueryClient,
-} from '@tanstack/react-query';
+} from "@tanstack/react-query";
 
 function onLogout(): void {
   // eslint-disable-next-line @typescript-eslint/require-await
   void (async (): Promise<void> => {
-    console.log('Logging out.');
+    console.log("Logging out.");
     //await signOut();
-    window.location.href = '/auth'; // or redirect to wherever the login page is
+    window.location.href = "/auth"; // or redirect to wherever the login page is
   })();
 }
 
@@ -22,7 +22,7 @@ function useCreateFakeContacts(): UseMutationResult<void, Error, number> {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (count: number) => {
-      await grassrootsAPI.POST('/contacts/add-fakes/{count}', {
+      await grassrootsAPI.POST("/contacts/add-fakes/{count}", {
         params: {
           path: {
             count,
@@ -32,7 +32,7 @@ function useCreateFakeContacts(): UseMutationResult<void, Error, number> {
     },
     retry: 1,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['contacts'] });
+      await queryClient.invalidateQueries({ queryKey: ["contacts"] });
     },
   });
 }
@@ -48,7 +48,7 @@ export function Nav(): JSX.Element {
   const { mutateAsync } = useCreateFakeContacts();
 
   return (
-    <ul id="nav" style={{ paddingRight: '1em' }}>
+    <ul id="nav" style={{ paddingRight: "1em" }}>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -69,7 +69,7 @@ export function Nav(): JSX.Element {
           Add 100 fake contacts.
         </button>
       </li>
-      <li id="logout" onClick={onLogout} style={{ display: 'none' }}>
+      <li id="logout" onClick={onLogout} style={{ display: "none" }}>
         <button>Logout</button>
       </li>
     </ul>

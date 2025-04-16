@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { JSX, useState } from 'react';
-import { ContactSearchInDTO } from '../grassroots-shared/contact.dto.entity';
-import { cast } from '../grassroots-shared/type-utils';
-import { PaginatedContacts } from '../components/paginated_contacts';
-import { useContactSearch } from '../hooks/useContactSearch';
+import { createFileRoute } from "@tanstack/react-router";
+import { JSX, useState } from "react";
+import { ContactSearchInDTO } from "../grassroots-shared/contact.dto.entity";
+import { cast } from "../grassroots-shared/type-utils";
+import { PaginatedContacts } from "../components/paginated_contacts";
+import { useContactSearch } from "../hooks/useContactSearch";
 
-export const Route = createFileRoute('/shared-search')({
+export const Route = createFileRoute("/shared-search")({
   component: SharedSearch,
   validateSearch: (search: Record<string, unknown>): ContactSearchInDTO => {
     return cast(ContactSearchInDTO, search);

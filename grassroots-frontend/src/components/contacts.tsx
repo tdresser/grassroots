@@ -1,6 +1,6 @@
-import { JSX } from 'react';
-import { ContactRow } from './contact_row';
-import { ContactEntityOutDTO } from '../grassroots-shared/contact.dto.entity';
+import { JSX } from "react";
+import { ContactRow } from "./contact_row";
+import { ContactEntityOutDTO } from "../grassroots-shared/contact.dto.entity";
 
 interface ContactsProps {
   contacts: ContactEntityOutDTO[];

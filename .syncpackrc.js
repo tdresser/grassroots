@@ -1,11 +1,11 @@
 const config = {
-  dependencyTypes: ['**'],
-  filter: '.',
+  dependencyTypes: ["**"],
+  filter: ".",
   sortPackages: true,
   source: [
-    'package.json',
-    'grassroots-backend/package.json',
-    'grassroots-frontend/package.json',
+    "package.json",
+    "grassroots-backend/package.json",
+    "grassroots-frontend/package.json",
   ],
 };
 

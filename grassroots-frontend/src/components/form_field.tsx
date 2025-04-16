@@ -1,6 +1,6 @@
-import { ErrorMessage } from '@hookform/error-message';
-import { HTMLInputTypeAttribute, JSX } from 'react';
-import { FieldValues, Path, useFormContext } from 'react-hook-form';
+import { ErrorMessage } from "@hookform/error-message";
+import { HTMLInputTypeAttribute, JSX } from "react";
+import { FieldValues, Path, useFormContext } from "react-hook-form";
 
 interface FormFieldProps<T extends FieldValues> {
   label: string;
@@ -20,7 +20,7 @@ export function FormField<T extends FieldValues>(
   const setValueAs = !props.emptyAsUndefined
     ? undefined
     : (value: unknown): unknown => {
-        return value === '' ? undefined : value;
+        return value === "" ? undefined : value;
       };
   return (
     <>
@@ -31,7 +31,7 @@ export function FormField<T extends FieldValues>(
         {...form.register(props.field, { setValueAs: setValueAs })}
         aria-invalid={invalid}
       />
-      <small style={{ height: '1em' }}>
+      <small style={{ height: "1em" }}>
         <ErrorMessage name={props.field} />
       </small>
     </>

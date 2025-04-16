@@ -5,7 +5,7 @@ services:
   # Note: If you are assigning a custom name to your db service on the line below, make sure it does not contain underscores
   db:
     container_name: db
-    image: 'postgres:latest'
+    image: "postgres:latest"
     environment:
       POSTGRES_USER: supertokens_user
       POSTGRES_PASSWORD: somePassword
@@ -16,7 +16,7 @@ services:
       - app_network
     restart: unless-stopped
     healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'supertokens_user', '-d', 'grassroots']
+      test: ["CMD", "pg_isready", "-U", "supertokens_user", "-d", "grassroots"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -31,10 +31,10 @@ services:
       - 3567:3567
     environment:
       # TODO: factor out password things.
-      POSTGRESQL_CONNECTION_URI: 'postgresql://supertokens_user:somePassword@db:5432/grassroots'
+      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@db:5432/grassroots"
       POSTGRESQL_DATABASE_NAME: grassroots
       POSTGRESQL_TABLE_NAMES_PREFIX: supertokens
-      LOG_LEVEL: 'DEBUG'
+      LOG_LEVEL: "DEBUG"
     networks:
       - app_network
     restart: unless-stopped

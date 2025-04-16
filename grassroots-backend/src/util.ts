@@ -1,4 +1,4 @@
-import { FindOperator, Like } from 'typeorm';
+import { FindOperator, Like } from "typeorm";
 
 export function LikeOrUndefined(
   s: string | undefined,

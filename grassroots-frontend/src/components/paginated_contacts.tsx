@@ -1,6 +1,6 @@
-import { JSX } from 'react';
-import { ContactRow } from './contact_row';
-import { PaginatedContactOutDTO } from '../grassroots-shared/contact.dto.entity';
+import { JSX } from "react";
+import { ContactRow } from "./contact_row";
+import { PaginatedContactOutDTO } from "../grassroots-shared/contact.dto.entity";
 
 type PaginatedContactsProps = PaginatedContactOutDTO & {
   setRowsToSkip: React.Dispatch<React.SetStateAction<number>>;
@@ -17,7 +17,7 @@ export function PaginatedContacts(props: PaginatedContactsProps): JSX.Element {
     <>
       {rows}
       <div>
-        {paginated.rowsSkipped}–{paginated.rowsSkipped + contacts.length} /{' '}
+        {paginated.rowsSkipped}–{paginated.rowsSkipped + contacts.length} /{" "}
         {paginated.rowsTotal}
       </div>
       <button

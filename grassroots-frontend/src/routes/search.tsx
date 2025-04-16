@@ -1,16 +1,16 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { PaginatedContacts } from '../components/paginated_contacts';
-import { JSX, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { FormField } from '../components/form_field';
-import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PaginatedContacts } from "../components/paginated_contacts";
+import { JSX, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { FormField } from "../components/form_field";
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import {
   ContactSearchInDTO,
   PaginatedContactSearchInDTO,
-} from '../grassroots-shared/contact.dto.entity';
-import { useContactSearch } from '../hooks/useContactSearch';
+} from "../grassroots-shared/contact.dto.entity";
+import { useContactSearch } from "../hooks/useContactSearch";
 
-export const Route = createFileRoute('/search')({
+export const Route = createFileRoute("/search")({
   component: Search,
 });
 
@@ -19,7 +19,7 @@ const ROWS_PER_PAGE = 10;
 function Search(): JSX.Element {
   const form = useForm<ContactSearchInDTO>({
     resolver: classValidatorResolver(ContactSearchInDTO),
-    mode: 'onChange',
+    mode: "onChange",
   });
 
   const [rowsToSkip, setRowsToSkip] = useState<number>(0);

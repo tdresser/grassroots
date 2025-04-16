@@ -107,7 +107,7 @@ return (
   PaginatedContactOutDTO >
   {
     queryFn: async () => {
-      const result = await grassrootsAPI.POST('/contacts/search', {
+      const result = await grassrootsAPI.POST("/contacts/search", {
         body: searchParams.contact,
       });
       return result.data;

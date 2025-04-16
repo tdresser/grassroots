@@ -1,6 +1,6 @@
-import { cast } from './type-utils';
+import { cast } from "./type-utils";
 
-describe('cast', () => {
+describe("cast", () => {
   it('should cast in the basic case"', () => {
     class Test {
       x!: number;
@@ -9,7 +9,7 @@ describe('cast', () => {
       }
     }
     const test = cast(Test, { x: 2 });
-    expect(test).toHaveProperty('x');
-    expect(test).toHaveProperty('y');
+    expect(test).toHaveProperty("x");
+    expect(test).toHaveProperty("y");
   });
 });

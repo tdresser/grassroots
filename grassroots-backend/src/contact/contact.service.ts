@@ -1,15 +1,15 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
-import { LikeOrUndefined } from 'src/util';
+import { Injectable, Logger } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { DataSource, Repository } from "typeorm";
+import { LikeOrUndefined } from "src/util";
 import {
   ContactEntityOutDTO,
   PaginatedContactOutDTO,
   PaginatedContactSearchInDTO,
   PendingContactInDto,
-} from 'src/grassroots-shared/contact.dto.entity';
+} from "src/grassroots-shared/contact.dto.entity";
 
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 @Injectable()
 export class ContactService {

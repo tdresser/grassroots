@@ -1,19 +1,19 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { JSX, useCallback, useState } from 'react';
+import { createFileRoute } from "@tanstack/react-router";
+import { JSX, useCallback, useState } from "react";
 
-import { grassrootsAPI } from '../grassrootsAPI';
+import { grassrootsAPI } from "../grassrootsAPI";
 
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import { FormField } from '../components/form_field';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { FormField } from "../components/form_field";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import {
   ContactEntityOutDTO,
   PendingContactInDto,
-} from '../grassroots-shared/contact.dto.entity';
-import { Contacts } from '../components/contacts';
+} from "../grassroots-shared/contact.dto.entity";
+import { Contacts } from "../components/contacts";
 
-export const Route = createFileRoute('/create-contact')({
+export const Route = createFileRoute("/create-contact")({
   component: NewContact,
 });
 
@@ -24,23 +24,23 @@ function NewContact(): JSX.Element {
 
   const form = useForm<PendingContactInDto>({
     resolver: classValidatorResolver(PendingContactInDto),
-    mode: 'onBlur',
+    mode: "onBlur",
   });
 
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: async (contact: PendingContactInDto) => {
-      const result = await grassrootsAPI.POST('/contacts', {
+      const result = await grassrootsAPI.POST("/contacts", {
         body: contact,
       });
       if (!result.data) {
-        throw new Error('Failed to create contact.');
+        throw new Error("Failed to create contact.");
       }
       return result.data;
     },
     retry: 1,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['contacts'] });
+      await queryClient.invalidateQueries({ queryKey: ["contacts"] });
     },
   });
 

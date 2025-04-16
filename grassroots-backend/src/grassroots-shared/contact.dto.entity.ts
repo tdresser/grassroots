@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import {
   IsEmail,
   IsInt,
@@ -6,8 +6,8 @@ import {
   IsOptional,
   Min,
   ValidateNested,
-} from 'class-validator';
-import { PaginatedInDTO, PaginatedOutDTO } from './paginated.dto';
+} from "class-validator";
+import { PaginatedInDTO, PaginatedOutDTO } from "./paginated.dto";
 
 export class PendingContactInDto {
   @IsEmail()
