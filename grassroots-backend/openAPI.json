@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/": {
+    "/api": {
       "get": {
         "operationId": "AppController_getHello",
         "parameters": [],
@@ -17,10 +17,12 @@
             }
           }
         },
-        "tags": ["App"]
+        "tags": [
+          "App"
+        ]
       }
     },
-    "/contacts": {
+    "/api/contacts": {
       "post": {
         "operationId": "ContactController_create",
         "parameters": [],
@@ -46,7 +48,9 @@
             }
           }
         },
-        "tags": ["Contact"]
+        "tags": [
+          "Contact"
+        ]
       },
       "get": {
         "operationId": "ContactController_findAll",
@@ -66,10 +70,12 @@
             }
           }
         },
-        "tags": ["Contact"]
+        "tags": [
+          "Contact"
+        ]
       }
     },
-    "/contacts/search": {
+    "/api/contacts/search": {
       "post": {
         "operationId": "ContactController_search",
         "parameters": [],
@@ -95,10 +101,12 @@
             }
           }
         },
-        "tags": ["Contact"]
+        "tags": [
+          "Contact"
+        ]
       }
     },
-    "/contacts/add-fakes/{count}": {
+    "/api/contacts/add-fakes/{count}": {
       "post": {
         "operationId": "ContactController_addFakesToDatabase",
         "parameters": [
@@ -116,7 +124,9 @@
             "description": ""
           }
         },
-        "tags": ["Contact"]
+        "tags": [
+          "Contact"
+        ]
       }
     }
   },
@@ -144,7 +154,11 @@
             "type": "string"
           }
         },
-        "required": ["email", "firstName", "lastName"]
+        "required": [
+          "email",
+          "firstName",
+          "lastName"
+        ]
       },
       "ContactEntityOutDTO": {
         "type": "object",
@@ -164,7 +178,12 @@
             "type": "string"
           }
         },
-        "required": ["id", "email", "firstName", "lastName"]
+        "required": [
+          "id",
+          "email",
+          "firstName",
+          "lastName"
+        ]
       },
       "ContactSearchInDTO": {
         "type": "object",
@@ -194,7 +213,10 @@
             "type": "number"
           }
         },
-        "required": ["rowsToSkip", "rowsToTake"]
+        "required": [
+          "rowsToSkip",
+          "rowsToTake"
+        ]
       },
       "PaginatedContactSearchInDTO": {
         "type": "object",
@@ -206,7 +228,10 @@
             "$ref": "#/components/schemas/PaginatedInDTO"
           }
         },
-        "required": ["contact", "paginated"]
+        "required": [
+          "contact",
+          "paginated"
+        ]
       },
       "PaginatedOutDTO": {
         "type": "object",
@@ -220,7 +245,10 @@
             "minimum": 0
           }
         },
-        "required": ["rowsSkipped", "rowsTotal"]
+        "required": [
+          "rowsSkipped",
+          "rowsTotal"
+        ]
       },
       "PaginatedContactOutDTO": {
         "type": "object",
@@ -235,7 +263,10 @@
             "$ref": "#/components/schemas/PaginatedOutDTO"
           }
         },
-        "required": ["contacts", "paginated"]
+        "required": [
+          "contacts",
+          "paginated"
+        ]
       }
     }
   }

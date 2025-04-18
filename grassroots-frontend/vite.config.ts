@@ -9,6 +9,9 @@ export default defineConfig({
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     react({ tsDecorators: true }),
   ],
+  server: {
+    allowedHosts: ["grassroots.test"],
+  },
   resolve: {
     alias: {
       typeorm: path.resolve(

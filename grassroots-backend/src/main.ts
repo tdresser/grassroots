@@ -37,6 +37,7 @@ async function bootstrap(): Promise<void> {
   });
   app.useGlobalFilters(new SuperTokensExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix("api");
 
   await app.listen(process.env.PORT ?? 3003);
 

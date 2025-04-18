@@ -1,14 +1,15 @@
-http://grassroots.local {
+grassroots.test {
+    tls internal
     log {
 		level DEBUG
 	}
-    route /api/* {
+    handle /api* {
         reverse_proxy localhost:3003
     }
-    route /auth/* {
+    handle /auth* {
         reverse_proxy localhost:3567
     }
-    route /* {
+    handle {
         reverse_proxy localhost:5173
     }
 }

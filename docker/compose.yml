@@ -35,6 +35,7 @@ services:
       POSTGRESQL_DATABASE_NAME: grassroots
       POSTGRESQL_TABLE_NAMES_PREFIX: supertokens
       LOG_LEVEL: "DEBUG"
+      BASE_PATH: "auth"
     networks:
       - app_network
     restart: unless-stopped
@@ -48,7 +49,9 @@ services:
   caddy:
     container_name: caddy_reverse_proxy
     ports:
-      - 8081:80
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
     volumes:
       - ./data/caddy:/data
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
