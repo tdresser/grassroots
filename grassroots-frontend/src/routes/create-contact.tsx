@@ -12,6 +12,7 @@ import {
   PendingContactInDto,
 } from "../grassroots-shared/contact.dto.entity";
 import { Contacts } from "../components/contacts";
+import { SessionAuth } from "supertokens-auth-react/recipe/session";
 
 export const Route = createFileRoute("/create-contact")({
   component: NewContact,
@@ -30,7 +31,7 @@ function NewContact(): JSX.Element {
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: async (contact: PendingContactInDto) => {
-      const result = await grassrootsAPI.POST("/api/contacts", {
+      const result = await grassrootsAPI.POST("/contacts", {
         body: contact,
       });
       if (!result.data) {
@@ -58,20 +59,22 @@ function NewContact(): JSX.Element {
 
   return (
     <>
-      {/*TODO: re-enable <SessionAuth>*/}
-      <FormProvider {...form}>
-        {/* This little typescript dance is required to make eslint happy.  */}
-        <form onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}>
-          <FormField field="firstName" label="First Name"></FormField>
-          <FormField field="lastName" label="Last Name"></FormField>
-          <FormField field="email" label="Email"></FormField>
-          <input type="submit" />
-        </form>
-      </FormProvider>
+      <SessionAuth>
+        <FormProvider {...form}>
+          {/* This little typescript dance is required to make eslint happy.  */}
+          <form
+            onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+          >
+            <FormField field="firstName" label="First Name"></FormField>
+            <FormField field="lastName" label="Last Name"></FormField>
+            <FormField field="email" label="Email"></FormField>
+            <input type="submit" />
+          </form>
+        </FormProvider>
 
-      {previouslyCreatedContacts.length == 0 ? <></> : <h2>Created</h2>}
-      <Contacts contacts={previouslyCreatedContacts}></Contacts>
-      {/*</SessionAuth>*/}
+        {previouslyCreatedContacts.length == 0 ? <></> : <h2>Created</h2>}
+        <Contacts contacts={previouslyCreatedContacts}></Contacts>
+      </SessionAuth>
     </>
   );
 }

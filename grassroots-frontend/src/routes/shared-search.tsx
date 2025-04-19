@@ -4,6 +4,7 @@ import { ContactSearchInDTO } from "../grassroots-shared/contact.dto.entity";
 import { cast } from "../grassroots-shared/type-utils";
 import { PaginatedContacts } from "../components/paginated_contacts";
 import { useContactSearch } from "../hooks/useContactSearch";
+import { SessionAuth } from "supertokens-auth-react/recipe/session";
 
 export const Route = createFileRoute("/shared-search")({
   component: SharedSearch,
@@ -27,14 +28,14 @@ function SharedSearch(): JSX.Element {
   });
   return results ? (
     <>
-      {/*TODO: re-enable <SessionAuth>*/}
-      <PaginatedContacts
-        contacts={results.contacts}
-        paginated={results.paginated}
-        setRowsToSkip={setRowsToSkip}
-        rowsPerPage={ROWS_PER_PAGE}
-      ></PaginatedContacts>
-      {/* </SessionAuth>*/}
+      <SessionAuth>
+        <PaginatedContacts
+          contacts={results.contacts}
+          paginated={results.paginated}
+          setRowsToSkip={setRowsToSkip}
+          rowsPerPage={ROWS_PER_PAGE}
+        ></PaginatedContacts>
+      </SessionAuth>
     </>
   ) : (
     <></>

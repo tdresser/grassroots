@@ -6,7 +6,7 @@ grassroots.test {
     handle /api* {
         reverse_proxy localhost:3003
     }
-    handle /supertokens* {
+    handle_path /supertokens* {
         reverse_proxy localhost:3567
     }
     handle {
