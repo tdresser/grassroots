@@ -1,4 +1,4 @@
-import { Logger, Module } from "@nestjs/common";
+import { Logger, Module, UnauthorizedException } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ContactModule } from "./contact/contact.module";
@@ -18,6 +18,10 @@ import { SUPERTOKENS_PATH } from "./grassroots-shared/local-constants";
 const logger = new Logger("AppModule");
 @Module({
   imports: [
+    TypeOrmModule.forRoot({
+      ...POSTGRES_CONFIG,
+      entities: [ContactEntityOutDTO],
+    }),
     ContactModule,
     SuperTokensModule.forRoot({
       framework: "express",
@@ -41,15 +45,13 @@ const logger = new Logger("AppModule");
               void response;
               void userContext;
               // TODO: Write your own logic and then send a 401 response to the frontend
+
+              throw new UnauthorizedException();
             },
           },
         }),
         //Dashboard.init(),
       ],
-    }),
-    TypeOrmModule.forRoot({
-      ...POSTGRES_CONFIG,
-      entities: [ContactEntityOutDTO],
     }),
   ],
   controllers: [AppController],
