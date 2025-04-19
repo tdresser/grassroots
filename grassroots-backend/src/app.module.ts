@@ -5,15 +5,15 @@ import { ContactModule } from "./contact/contact.module";
 import { SuperTokensModule } from "supertokens-nestjs";
 import Session from "supertokens-node/recipe/session";
 import EmailPassword from "supertokens-node/recipe/emailpassword";
-import Dashboard from "supertokens-node/recipe/dashboard";
+//import Dashboard from "supertokens-node/recipe/dashboard";
 
 import { APP_GUARD } from "@nestjs/core";
 import { SuperTokensAuthGuard } from "supertokens-nestjs";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { POSTGRES_CONFIG } from "./constants";
-import { SUPERTOKENS_HOST } from "./grassroots-shared/local-constants";
 import { SUPERTOKENS_APPINFO } from "./grassroots-shared/supertokens-appinfo";
 import { ContactEntityOutDTO } from "./grassroots-shared/contact.dto.entity";
+import { SUPERTOKENS_PATH } from "./grassroots-shared/local-constants";
 
 const logger = new Logger("AppModule");
 @Module({
@@ -22,7 +22,7 @@ const logger = new Logger("AppModule");
     SuperTokensModule.forRoot({
       framework: "express",
       supertokens: {
-        connectionURI: SUPERTOKENS_HOST,
+        connectionURI: SUPERTOKENS_PATH,
       },
       appInfo: SUPERTOKENS_APPINFO,
       recipeList: [
@@ -43,8 +43,8 @@ const logger = new Logger("AppModule");
               // TODO: Write your own logic and then send a 401 response to the frontend
             },
           },
-        }), // initializes session features
-        Dashboard.init(),
+        }),
+        //Dashboard.init(),
       ],
     }),
     TypeOrmModule.forRoot({

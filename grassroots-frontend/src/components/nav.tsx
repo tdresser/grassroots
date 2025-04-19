@@ -22,7 +22,7 @@ function useCreateFakeContacts(): UseMutationResult<void, Error, number> {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (count: number) => {
-      await grassrootsAPI.POST("/contacts/add-fakes/{count}", {
+      await grassrootsAPI.POST("/api/contacts/add-fakes/{count}", {
         params: {
           path: {
             count,

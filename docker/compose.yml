@@ -35,7 +35,7 @@ services:
       POSTGRESQL_DATABASE_NAME: grassroots
       POSTGRESQL_TABLE_NAMES_PREFIX: supertokens
       LOG_LEVEL: "DEBUG"
-      BASE_PATH: "auth"
+      BASE_PATH: "supertokens"
     networks:
       - app_network
     restart: unless-stopped

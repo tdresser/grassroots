@@ -9,6 +9,7 @@ import {
   PaginatedContactSearchInDTO,
 } from "../grassroots-shared/contact.dto.entity";
 import { useContactSearch } from "../hooks/useContactSearch";
+import { SessionAuth } from "supertokens-auth-react/recipe/session";
 
 export const Route = createFileRoute("/search")({
   component: Search,
@@ -40,44 +41,44 @@ function Search(): JSX.Element {
 
   return (
     <>
-      {/*TODO: re-enable <SessionAuth>*/}
-      <FormProvider {...form}>
-        <form>
-          <FormField
-            field="firstName"
-            label="First Name"
-            emptyAsUndefined
-          ></FormField>
-          <FormField
-            field="lastName"
-            label="Last Name"
-            emptyAsUndefined
-          ></FormField>
-          <FormField field="email" label="Email" emptyAsUndefined></FormField>
-          <FormField
-            field="id"
-            label="id"
-            emptyAsUndefined
-            type="number"
-          ></FormField>
-        </form>
-      </FormProvider>
+      <SessionAuth>
+        <FormProvider {...form}>
+          <form>
+            <FormField
+              field="firstName"
+              label="First Name"
+              emptyAsUndefined
+            ></FormField>
+            <FormField
+              field="lastName"
+              label="Last Name"
+              emptyAsUndefined
+            ></FormField>
+            <FormField field="email" label="Email" emptyAsUndefined></FormField>
+            <FormField
+              field="id"
+              label="id"
+              emptyAsUndefined
+              type="number"
+            ></FormField>
+          </form>
+        </FormProvider>
 
-      <Link role="button" to="/shared-search" search={searchParams.contact}>
-        Share Link to Search
-      </Link>
+        <Link role="button" to="/shared-search" search={searchParams.contact}>
+          Share Link to Search
+        </Link>
 
-      {results ? (
-        <PaginatedContacts
-          contacts={results.contacts}
-          paginated={results.paginated}
-          setRowsToSkip={setRowsToSkip}
-          rowsPerPage={ROWS_PER_PAGE}
-        ></PaginatedContacts>
-      ) : (
-        <></>
-      )}
-      {/*</SessionAuth>*/}
+        {results ? (
+          <PaginatedContacts
+            contacts={results.contacts}
+            paginated={results.paginated}
+            setRowsToSkip={setRowsToSkip}
+            rowsPerPage={ROWS_PER_PAGE}
+          ></PaginatedContacts>
+        ) : (
+          <></>
+        )}
+      </SessionAuth>
     </>
   );
 }

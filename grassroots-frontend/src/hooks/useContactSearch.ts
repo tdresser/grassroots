@@ -20,7 +20,7 @@ export function useContactSearch(
       if (Object.values(contact).every((el: unknown) => el === undefined)) {
         return PaginatedContactOutDTO.empty();
       }
-      const result = await grassrootsAPI.POST("/contacts/search", {
+      const result = await grassrootsAPI.POST("/api/contacts/search", {
         body: searchParams,
       });
       return (

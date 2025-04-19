@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param } from "@nestjs/common";
 import { ContactService } from "./contact.service";
-import { PublicAccess, VerifySession } from "supertokens-nestjs";
+import { VerifySession } from "supertokens-nestjs";
 import {
   ContactEntityOutDTO,
   PaginatedContactOutDTO,
@@ -13,8 +13,7 @@ export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
   @Post("")
-  @PublicAccess()
-  //@VerifySession()
+  @VerifySession()
   async create(
     @Body() createContactDto: PendingContactInDto,
   ): Promise<ContactEntityOutDTO> {
@@ -22,15 +21,13 @@ export class ContactController {
   }
 
   @Get()
-  @PublicAccess()
-  //@VerifySession()
+  @VerifySession()
   findAll(): Promise<ContactEntityOutDTO[]> {
     return this.contactService.findAll();
   }
 
   @Post("search")
-  @PublicAccess()
-  //@VerifySession()
+  @VerifySession()
   search(
     @Body() contact: PaginatedContactSearchInDTO,
   ): Promise<PaginatedContactOutDTO> {
@@ -38,8 +35,7 @@ export class ContactController {
   }
 
   @Post("add-fakes/:count")
-  @PublicAccess()
-  //@VerifySession()
+  @VerifySession()
   addFakesToDatabase(@Param("count") count: number): Promise<void> {
     return this.contactService.addFakesToDatabase(count);
   }

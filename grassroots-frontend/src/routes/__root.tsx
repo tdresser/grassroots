@@ -1,4 +1,4 @@
-import SuperTokens from "supertokens-auth-react";
+import SuperTokens, { SuperTokensWrapper } from "supertokens-auth-react";
 import EmailPassword from "supertokens-auth-react/recipe/emailpassword";
 import Session from "supertokens-auth-react/recipe/session";
 import { SUPERTOKENS_APPINFO } from "../grassroots-shared/supertokens-appinfo";
@@ -7,21 +7,14 @@ console.log("INIT");
 SuperTokens.init({
   appInfo: SUPERTOKENS_APPINFO,
   enableDebugLogs: true,
-  recipeList: [
-    Session.init({
-      // Third party cookie deprecation requires this approach.
-      // https://supertokens.com/docs/post-authentication/session-management/switch-between-cookies-and-header-authentication
-      tokenTransferMethod: "header",
-    }),
-    EmailPassword.init(),
-  ],
+  recipeList: [Session.init(), EmailPassword.init()],
 });
 console.log("DONE INIT");
 
 //const userId = await Session.getUserId();
-//console.log('userID', userId);
+//console.log("userID", userId);
 
-//console.log('Access Token', await Session.getAccessToken());
+//console.log("Access Token", await Session.getAccessToken());
 
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
@@ -40,15 +33,15 @@ export const Route = createRootRoute({
   component: () => {
     return (
       <div id="root">
-        {/*<SuperTokensWrapper>*/}
-        <QueryClientProvider client={queryClient}>
-          <Nav></Nav>
-          <div id="outlet">
-            <Outlet />
-          </div>
-          <TanStackRouterDevtools />
-        </QueryClientProvider>
-        {/*</SuperTokensWrapper>*/}
+        <SuperTokensWrapper>
+          <QueryClientProvider client={queryClient}>
+            <Nav></Nav>
+            <div id="outlet">
+              <Outlet />
+            </div>
+            <TanStackRouterDevtools />
+          </QueryClientProvider>
+        </SuperTokensWrapper>
       </div>
     );
   },

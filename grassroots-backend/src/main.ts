@@ -1,16 +1,11 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import supertokens from "supertokens-node";
 import { SuperTokensExceptionFilter } from "supertokens-nestjs";
 import crypto from "crypto";
 import os from "os";
 
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { readFile, writeFile } from "fs/promises";
-import {
-  FRONTEND_HOST,
-  SUPERTOKENS_HOST,
-} from "./grassroots-shared/local-constants";
 
 import openapiTS, { astToString } from "openapi-typescript";
 
@@ -30,11 +25,11 @@ process.on("unhandledRejection", (err) => {
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors({
+  /*app.enableCors({
     origin: [SUPERTOKENS_HOST, FRONTEND_HOST],
     allowedHeaders: ["Content-Type", ...supertokens.getAllCORSHeaders()],
     credentials: true,
-  });
+  });*/
   app.useGlobalFilters(new SuperTokensExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix("api");

@@ -30,7 +30,7 @@ function NewContact(): JSX.Element {
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: async (contact: PendingContactInDto) => {
-      const result = await grassrootsAPI.POST("/contacts", {
+      const result = await grassrootsAPI.POST("/api/contacts", {
         body: contact,
       });
       if (!result.data) {

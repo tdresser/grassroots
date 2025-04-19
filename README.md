@@ -9,6 +9,18 @@ Update `grassroots-backend/src/grassroots-shared/local-constants.ts` with your l
 
 If you use vscode, grab the [recommended](.vscode/extensions.json) extensions, for eslint and prettier.
 
+## Trusting local certs
+
+Once you've started up docker, you'll want to install the cert at docker/data/caddy/caddy/pki/authorities/local/root.crt. This will cause your browser to trust the local certificates issued by caddy, the reverse proxy we're using.
+
+For Chrome, you can install certs via: chrome://certificate-manager/.
+On Ubuntu:
+
+```sh
+sudo cp docker/data/caddy/caddy/pki/authorities/local/root.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+```
+
 # Running in Dev Mode
 
 You'll need to access via your local IP, not localhost. This will change as part of fixing auth.
@@ -194,6 +206,12 @@ Supertokens has nice [integration](https://supertokens.com/docs/quickstart/integ
 async deleteUser(@Session() session: SessionContainer) {}
 ```
 
+The setup here is a bit confusing. There are three parts:
+
+- Frontend: we render an auth related route at /auth.
+- Backend: we have auth related things at /api/auth.
+- Supertokens core: we host supertokens core at /supertokens.
+
 ## Other
 
 - `openapi-typescript` to generate typescript request/response bindings.
@@ -224,8 +242,8 @@ If we end up depending on two versions of the same package across frontend and b
 TypeORM will refuse to connect if the schema has changed. The easiest thing to do is completely drop the database and restart everything. This is a bit overly aggressive, but does the job!
 
 ```bash
-docker compose down -v
-docker compose up --force-recreate
+docker compose down -v db
+docker compose up --force-recreate db
 ```
 
 # FAQs
