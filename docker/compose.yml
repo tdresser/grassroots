@@ -50,18 +50,10 @@ services:
     build: ".."
     volumes:
       - type: bind
-        source: ../grassroots-frontend
-        target: /app/grassroots-frontend
-      - type: bind
-        source: ../grassroots-backend
-        target: /app/grassroots-backend
-      - type: bind
-        source: ../package.json
-        target: /app/package.json
-      - type: bind
-        source: ../package-lock.json
-        target: /app/package-lock.json
-      # https://stackoverflow.com/a/38601156 - to avoid using local node modules.
+        source: ../
+        target: /app/
+      # https://stackoverflow.com/a/38601156 - to exclude directories.
+      - /app/docker
       - /app/node_modules
       - /app/grassroots-backend/node_modules
       - /app/grassroots-backend/dist
@@ -71,7 +63,7 @@ services:
       - "5173:5173"
       - "3003:3003"
 
-  caddy:
+  caddy_reverse_proxy:
     container_name: caddy_reverse_proxy
     # Uses ports 80, 443, and 443/udp.
     volumes:
