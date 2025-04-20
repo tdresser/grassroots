@@ -50,21 +50,23 @@ services:
     build: ".."
     volumes:
       - type: bind
-        source: ./grassroots_frontend
-        target: /app/grassroots_frontend
+        source: ../grassroots-frontend
+        target: /app/grassroots-frontend
       - type: bind
-        source: ./grassroots_backend
-        target: /app/grassroots_backend
+        source: ../grassroots-backend
+        target: /app/grassroots-backend
       - type: bind
-        source: ${PWD}/../package.json
+        source: ../package.json
         target: /app/package.json
       - type: bind
-        source: ${PWD}/../package-lock.json
+        source: ../package-lock.json
         target: /app/package-lock.json
       # https://stackoverflow.com/a/38601156 - to avoid using local node modules.
       - /app/node_modules
-      - /app/grassroots_backend/node_modules
-      - /app/grassroots_frontend/node_modules
+      - /app/grassroots-backend/node_modules
+      - /app/grassroots-backend/dist
+      - /app/grassroots-frontend/node_modules
+      - /app/grassroots-frontend/dist
     ports:
       - "5173:5173"
 

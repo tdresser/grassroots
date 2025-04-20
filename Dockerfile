@@ -5,12 +5,22 @@ FROM node:${NODE_VERSION}-alpine
 # Use production node environment by default.
 # ENV NODE_ENV=production
 
-WORKDIR /app
-
 # --omit=dev
 
 # Run the application as a non-root user.
-USER node
+ARG UNAME=grassroots_dev
+ARG UID=1000
+ARG GID=1000
+
+WORKDIR /app
+
+# First remove the node user to avoid uid/gid conflicts, then we create our user.
+RUN deluser node \
+    && addgroup -g ${GID} ${UNAME} \
+    && adduser -G ${UNAME} -u ${UID} ${UNAME} -D
+
+USER ${UNAME}
+
 
 # Expose the port that the application listens on.
 EXPOSE 5173
@@ -19,4 +29,8 @@ EXPOSE 5173
 # RUN --mount=type=bind,source=package.json,target=/app/package.json \
 #RUN npm ci
 #CMD ["npm", "run", "dev"]
+
+COPY ./docker/grassroots-dev-fix-permissions.sh /app/grassroots-dev-fix-permissions.sh
+ENTRYPOINT ["/bin/sh", "grassroots-dev-fix-permissions.sh", ${UID}]
+
 CMD ["sleep", "infinity"]
