@@ -69,6 +69,7 @@ services:
       - /app/grassroots-frontend/dist
     ports:
       - "5173:5173"
+      - "3003:3003"
 
   caddy:
     container_name: caddy_reverse_proxy

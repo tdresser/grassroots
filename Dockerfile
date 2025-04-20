@@ -19,18 +19,28 @@ RUN deluser node \
     && addgroup -g ${GID} ${UNAME} \
     && adduser -G ${UNAME} -u ${UID} ${UNAME} -D
 
+RUN mkdir node_modules  && chown ${UNAME} node_modules && \
+    mkdir grassroots-frontend && mkdir grassroots-backend && \
+    mkdir grassroots-frontend/node_modules && chown ${UNAME} grassroots-frontend/node_modules && \
+    mkdir grassroots-backend/node_modules && chown ${UNAME} grassroots-backend/node_modules &&\
+    mkdir grassroots-frontend/dist && chown ${UNAME} grassroots-frontend/dist && \
+    mkdir grassroots-backend/dist && chown ${UNAME} grassroots-backend/dist
+
 USER ${UNAME}
 
-
-# Expose the port that the application listens on.
+# Vite
 EXPOSE 5173
+# Nest
+EXPOSE 3003
 
-# Run the application.
-# RUN --mount=type=bind,source=package.json,target=/app/package.json \
-#RUN npm ci
-#CMD ["npm", "run", "dev"]
+RUN --mount=type=bind,source=package.json,target=/app/package.json \
+  --mount=type=bind,source=package-lock.json,target=/app/package-lock.json \
+  --mount=type=bind,source=grassroots-frontend/package.json,target=/app/grassroots-frontend/package.json \
+  --mount=type=bind,source=grassroots-frontend/package-lock.json,target=/app/grassroots-frontend/package-lock.json \
+  --mount=type=bind,source=grassroots-backend/package.json,target=/app/grassroots-backend/package.json \
+  --mount=type=bind,source=grassroots-backend/package-lock.json,target=/app/grassroots-backend/package-lock.json \
+  npm ci && cd grassroots-frontend && npm ci && cd ../grassroots-backend && npm ci
 
-COPY ./docker/grassroots-dev-fix-permissions.sh /app/grassroots-dev-fix-permissions.sh
-ENTRYPOINT ["/bin/sh", "grassroots-dev-fix-permissions.sh", ${UID}]
+CMD ["npm", "run", "dev"]
 
-CMD ["sleep", "infinity"]
+# CMD ["sleep", "infinity"]

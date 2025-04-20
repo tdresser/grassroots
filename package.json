@@ -16,8 +16,7 @@
     "test": "echo \"TODO: test\" && exit 0",
     "format": "npx prettier . --write",
     "check": "npx tsc --noEmit --project grassroots-frontend && npx tsc --noEmit --project grassroots-backend && npx eslint . ",
-    "dev": "npx concurrently \"docker compose -f docker/compose.yml up\" \"npm run --prefix grassroots-frontend dev \" \"npm run --prefix grassroots-backend start:dev\"",
-    "dev:host": "npx concurrently \"docker compose -f docker/compose.yml up\" \"npm run --prefix grassroots-frontend dev -- --host\" \"npm run --prefix grassroots-backend start:dev\""
+    "dev": "npx concurrently \"npm run --prefix grassroots-frontend dev -- --host \" \"npm run --prefix grassroots-backend start:dev\""
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
