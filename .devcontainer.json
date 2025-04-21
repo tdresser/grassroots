@@ -1,0 +1,12 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+    }
+  },
+  "dockerComposeFile": ["docker/compose.yml"],
+
+  "service": "grassroots_dev",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose"
+}
