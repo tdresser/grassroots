@@ -52,6 +52,10 @@ services:
       - type: bind
         source: ../
         target: /app/
+      # Use grassroots-shared in both the backend and the frontend.
+      - type: bind
+        source: ../grassroots-backend/src/grassroots-shared
+        target: /app/grassroots-frontend/src/grassroots-shared
       # https://stackoverflow.com/a/38601156 - to exclude directories.
       - /app/docker
       - /app/node_modules
