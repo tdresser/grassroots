@@ -1,13 +1,7 @@
 grassroots.test {
     tls internal
-    log {
-		level DEBUG
-	}
     handle /api* {
         reverse_proxy localhost:3003
-    }
-    handle_path /supertokens* {
-        reverse_proxy localhost:3567
     }
     handle {
         reverse_proxy localhost:5173
