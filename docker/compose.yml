@@ -59,7 +59,7 @@ services:
       - type: bind
         source: ../grassroots-backend/src/grassroots-shared
         target: /app/grassroots-frontend/src/grassroots-shared
-      # https://stackoverflow.com/a/38601156 - to exclude directories.
+      # https://stackoverflow.com/a/38601156 - to exclude directories from the real filesystem.
       - /app/node_modules
       - /app/grassroots-backend/node_modules
       - /app/grassroots-backend/dist
@@ -68,8 +68,8 @@ services:
     ports:
       - "5173:5173"
       - "3003:3003"
-    depends_on:
-      - supertokens
+    #depends_on:
+    #  - supertokens
 
   caddy_reverse_proxy:
     container_name: caddy_reverse_proxy
