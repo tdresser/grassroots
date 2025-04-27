@@ -37,6 +37,8 @@ EXPOSE 3003
 RUN --mount=type=bind,source=.,target=/app/ \
   npm ci && cd grassroots-frontend && npm ci && cd ../grassroots-backend && npm ci
 
-CMD ["npm", "run", "dev"]
+# For dev, we don't actually want to run npm run dev, it's better to do that manually. For prod,
+# we'd want to:
+# CMD ["npm", "run", "dev"]
 
-# CMD ["sleep", "infinity"]
+CMD ["sleep", "infinity"]
