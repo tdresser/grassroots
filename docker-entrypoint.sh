@@ -20,6 +20,8 @@ install_deps_if_needed "/app" "root"
 install_deps_if_needed "/app/grassroots-frontend" "frontend"
 install_deps_if_needed "/app/grassroots-backend" "backend"
 
+ln -s "/app/grassroots-backend/src/grassroots-shared/" "/app/grassroots-frontend/src"
+
 # Execute the command passed to docker run
 echo "Running command: $@"
 exec "$@"

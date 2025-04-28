@@ -55,10 +55,6 @@ services:
       - type: bind
         source: ../
         target: /app/
-      # Use grassroots-shared in both the backend and the frontend.
-      - type: bind
-        source: ../grassroots-backend/src/grassroots-shared
-        target: /app/grassroots-frontend/src/grassroots-shared
       # https://stackoverflow.com/a/38601156 - to exclude directories from the real filesystem.
       - /app/node_modules
       - /app/grassroots-backend/node_modules
